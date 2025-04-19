@@ -4,11 +4,10 @@ import books from './routes/books.mjs'
 import fs from 'fs';
 
 
-
-
 //initialize express into a variable
 const app = express();
 const PORT = 3000 || 3001
+app.use(express.static("./styles"));
 
 // MiddleWare
 app.use(express.json());
@@ -42,30 +41,24 @@ app.set("views", "./views"); // specify the views directory
 app.set("view engine", "books"); 
 
 app.get('/template', (req, res) => {
-    let options = {title: "Book App", content: "Welcome to open Library"}
+    let options = {title: "Book App", content: `Welcome to open Library. n/ 
+        One web page for every book ever published. It's a lofty but achievable goal. \n
+
+To build Open Library, we need hundreds of millions of book records, a wiki interface, \n 
+and lots of people who are willing to contribute their time and effort to building the site.
+
+To date, we have gathered over 20 million records from a variety of large catalogs as well as single contributions, \n
+with more on the way.n/
+
+Open Library is an open project: the software is open, the data are open, the documentation is open, \n
+and we welcome your contribution. Whether you fix a typo, add a book, or write a widget--it's all welcome. \n
+We have a small team of fantastic programmers who have accomplished a lot, but we can't do it alone!
+
+Open Library is a project of the non-profit Internet Archive, and has been funded in part by a grant \n 
+from the California State Library and the Kahle/Austin Foundation.`}
     res.render('index', options)
 })
-// // Routes
-// //routes to view books
-app.use('./books', books)
 
-app
-.route('/books')
-.get((req, res) => {
-    res.send('View books');
-})
-.get((req, res) => {
-    res.send('View books');
-})
-.post((req, res) => {
-    res.send('Add you favorites');
-})
-.put((req, res) => {
-    res.send('Books[index]');
-})
-.delete((req, res) => {
-    res.send('Delete book');
-});
 
 // Listener
 

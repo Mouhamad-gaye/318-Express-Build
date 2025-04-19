@@ -3,12 +3,8 @@
   <head>
     <title>#title#</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/style.css" />
-    <style>
-    * {
-        backgrouund-color: red
-    }
-    </style>
+    <link rel="stylesheet" href="../style.css" />
+
   </head>
 
   <body>
