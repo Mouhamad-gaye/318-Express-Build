@@ -1,5 +1,7 @@
 import express from 'express'
 import books from './routes/books.mjs'
+// import data from './data.mjs'
+import fs from 'fs';
 
 
 
@@ -20,7 +22,29 @@ app.use(logReq);
 app.use((err, req, res, next) => {
     res.status(400).send(err.message);
 });
+// View Engine 
+app.engine("books", (filePath, options, callback) => {
+    fs.readFile(filePath, (err, content) => {
+      if (err) return callback(err);
+  
+      // Here, we take the content of the template file,
+      // convert it to a string, and replace sections of
+      // it with the values being passed to the engine.
+      const rendered = content
+        .toString()
+        .replaceAll("#title#", `${options.title}`)
+        .replace("#content#", `${options.content}`);
+      return callback(null, rendered);
+    });
+  });
 
+app.set("views", "./views"); // specify the views directory
+app.set("view engine", "books"); 
+
+app.get('/template', (req, res) => {
+    let options = {title: "Book App", content: "Welcome to open Library"}
+    res.render('index', options)
+})
 // // Routes
 // //routes to view books
 app.use('./books', books)

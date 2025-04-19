@@ -1,3 +1,5 @@
+import express from 'express';
+
 let books = [{
     id: 1,
     title: 'Funny Story',
@@ -94,3 +96,6 @@ function viewbooks() {
  function deleteBokk(id) {
     books = books.filter((book) => book.id !== id);
  }
+
+
+module.exports = data
