@@ -1,6 +1,6 @@
 import express from 'express'
 import books from './routes/books.mjs'
-// import data from './data.mjs'
+import data from './data.mjs'
 import fs from 'fs';
 
 
@@ -8,6 +8,7 @@ import fs from 'fs';
 const app = express();
 const PORT = 3000 || 3001
 app.use(express.static("./styles"));
+// let data = [];
 
 // MiddleWare
 app.use(express.json());
