@@ -1,6 +1,6 @@
 import express from 'express';
 
-let books = [{
+let data = [{
     id: 1,
     title: 'Funny Story',
     author: 'Emily Henry',
@@ -74,28 +74,6 @@ let books = [{
 },
 ]
 
-// Helper Functions
-
-function addBooks(id, title, author, status) {
-    books.push({id, title, author, status})
-}
-
-function viewbooks() {
-    return books;
-}
-
- function bookUpdate (id, newData) {
-    const bookIndex = books.findIndex((book) => book.id === id);
-    if(bookIndex !== -1) {
-        books[bookIndex] = {... books[bookIndex], ...newData};
-        return books[bookIndex];
-    }
-    return null
- }
-
- function deleteBokk(id) {
-    books = books.filter((book) => book.id !== id);
- }
 
 
-export default books
+export default data
